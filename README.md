@@ -41,8 +41,7 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd TestSchool/frontend
+git clone https://github.com/fathe4/Competency-Assessment-Platform-Frontend.git
 ```
 
 ### 2. Install Dependencies
