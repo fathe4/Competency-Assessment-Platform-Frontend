@@ -33,42 +33,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [
-          FLUSH,
-          REHYDRATE,
-          PAUSE,
-          PERSIST,
-          PURGE,
-          REGISTER,
-          // Ignore RTK Query actions that might contain non-serializable data
-          "api/executeMutation/pending",
-          "api/executeMutation/fulfilled",
-          "api/executeMutation/rejected",
-          "api/executeQuery/pending",
-          "api/executeQuery/fulfilled",
-          "api/executeQuery/rejected",
-        ],
-        // Ignore RTK Query paths that might contain non-serializable data
-        ignoredActionPaths: [
-          "meta.arg",
-          "payload.timestamp",
-          "error.data",
-          "meta.baseQueryMeta",
-        ],
-        ignoredPaths: [
-          "api.mutations",
-          "api.queries",
-          "api.subscriptions",
-          // Ignore any API error data that might contain ArrayBuffers
-          "api.mutations.error.data",
-          "api.queries.error.data",
-          // Ignore specific mutation paths that are causing issues
-          /^api\.mutations\..+\.error\.data$/,
-          /^api\.queries\..+\.error\.data$/,
-        ],
-        // Add debug logging if needed
-        warnAfter: 128,
-        ignoredState: ["api"],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(baseApi.middleware), // Use only baseApi middleware
 });

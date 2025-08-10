@@ -59,42 +59,10 @@ const axiosBaseQuery =
     } catch (axiosError) {
       const err = axiosError as AxiosError;
 
-      // Handle potential ArrayBuffer or other non-serializable data
-      let errorData = err.response?.data || err.message;
-
-      // Convert ArrayBuffer to a serializable format
-      if (errorData instanceof ArrayBuffer) {
-        errorData = {
-          type: "ArrayBuffer",
-          byteLength: errorData.byteLength,
-          message: "Binary data received",
-        };
-      }
-
-      // Convert other non-serializable types
-      if (
-        errorData &&
-        typeof errorData === "object" &&
-        errorData.constructor &&
-        errorData.constructor !== Object &&
-        errorData.constructor !== Array
-      ) {
-        try {
-          // Try to serialize - if it fails, create a safe representation
-          JSON.stringify(errorData);
-        } catch {
-          errorData = {
-            type: errorData.constructor.name,
-            message: "Non-serializable data received",
-            toString: errorData.toString?.() || "Unknown error",
-          };
-        }
-      }
-
       const errorResponse = {
         error: {
           status: err.response?.status,
-          data: errorData,
+          data: err.response?.data || err.message,
         },
       };
 
