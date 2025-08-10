@@ -11,7 +11,7 @@ export const setTokenGetter = (tokenGetter: () => string | null) => {
 };
 
 const baseQuery = axiosBaseQuery({
-  baseUrl: "http://localhost:5000/api/v1",
+  baseUrl: import.meta.env.VITE_API_BASE_URL,
   // Pass a function that dynamically calls getAccessToken when needed
   getAccessToken: () => (getAccessToken ? getAccessToken() : null),
 });
