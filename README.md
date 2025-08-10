@@ -191,22 +191,6 @@ npm run dev
 - Verify all environment variables are set correctly
 - Check network connectivity for API calls
 
-## 📞 Support & Contributing
-
-### Getting Help
-
-- Check the troubleshooting section above
-- Review the project documentation
-- Contact the development team
-
-### Contributing Guidelines
-
-1. Fork the repository
-2. Create a feature branch
-3. Follow the coding standards
-4. Write comprehensive tests
-5. Submit a pull request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
