@@ -1,6 +1,8 @@
 import React from "react";
-import LoginForm from "../features/auth/components/LoginForm";
+import LoginForm from "../components/auth/LoginForm";
 
-export const LoginPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   return <LoginForm />;
 };
+
+export { LoginPage };

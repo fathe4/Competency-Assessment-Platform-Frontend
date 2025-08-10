@@ -1,5 +1,7 @@
 export const CONSTANTS = {
   AUTH: "Auth",
+  USER: "User",
+  CERTIFICATE: "Certificate",
   ASSESSMENT: {
     TEST: "Test",
     QUESTION: "Question",

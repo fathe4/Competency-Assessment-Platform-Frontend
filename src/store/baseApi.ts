@@ -20,9 +20,8 @@ export const baseApi = createApi({
   reducerPath: "api",
   baseQuery,
   tagTypes: [
-    "Post",
-    "User",
-    "Certificate",
+    CONSTANTS.USER,
+    CONSTANTS.CERTIFICATE,
     CONSTANTS.AUTH,
     CONSTANTS.ASSESSMENT.TEST,
     CONSTANTS.ASSESSMENT.QUESTION,

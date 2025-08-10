@@ -5,8 +5,17 @@ import {
   Navigate,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Navigation, VerificationWrapper } from "./components/shared";
-import { Dashboard } from "./features/dashboard";
+import {
+  Navigation,
+  VerificationWrapper,
+  AdminRoute,
+} from "./components/shared";
+import { Dashboard } from "./components/dashboard";
+import {
+  AdminLayout,
+  AdminDashboard,
+  UserManagement,
+} from "./components/admin";
 import { useAuth } from "./hooks/useAuth";
 import {
   LoginPage,
@@ -94,6 +103,21 @@ export default function App() {
                 )
               }
             />
+
+            {/* Admin Routes (Protected) */}
+            <Route
+              path="/admin/*"
+              element={
+                <AdminRoute>
+                  <VerificationWrapper>
+                    <AdminLayout />
+                  </VerificationWrapper>
+                </AdminRoute>
+              }
+            >
+              <Route index element={<AdminDashboard />} />
+              <Route path="users" element={<UserManagement />} />
+            </Route>
 
             {/* Default Route */}
             <Route

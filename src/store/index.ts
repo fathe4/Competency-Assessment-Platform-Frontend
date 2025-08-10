@@ -1,11 +1,12 @@
-// Store configuration exports
-export { store, persistor, type RootState, type AppDispatch } from "./store";
+// Export store and hooks
+export { store } from "./store";
 export { useAppDispatch, useAppSelector } from "./hooks";
 
 // API imports
 import { authApi } from "./authApi";
 import { assessmentApi } from "./assessmentApi";
 import { certificateApi } from "./certificateApi";
+import { userApi } from "./userApi";
 
 // Auth exports with namespace to avoid conflicts
 export { authApi };
@@ -30,6 +31,9 @@ export {
   setError as setAssessmentError,
   resetAssessment,
 } from "./slices/assessmentSlice";
+
+// User API export
+export { userApi };
 
 // API hooks - Assessment
 export const {
@@ -66,3 +70,13 @@ export const {
   useGetCertificateQuery,
   useDownloadCertificateMutation,
 } = certificateApi;
+
+// API hooks - User Management
+export const {
+  useGetAllUsersQuery,
+  useLazyGetAllUsersQuery,
+  useGetUserProfileQuery,
+  useUpdateUserProfileMutation,
+  useChangePasswordMutation,
+  useChangeUserRoleMutation,
+} = userApi;

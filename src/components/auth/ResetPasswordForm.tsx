@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hooks/useAuth";
-import { showApiError } from "../../../utils/toast";
+import { useAuth } from "../../hooks/useAuth";
+import { showApiError } from "../../utils/toast";
 
 const ResetPasswordFormComponent: React.FC = () => {
   const [searchParams] = useSearchParams();

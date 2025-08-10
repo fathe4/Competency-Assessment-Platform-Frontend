@@ -1,6 +1,8 @@
 import React from "react";
-import ResetPasswordFormComponent from "../features/auth/components/ResetPasswordForm";
+import ResetPasswordFormComponent from "../components/auth/ResetPasswordForm";
 
-export const ResetPasswordPage: React.FC = () => {
+const ResetPasswordPage: React.FC = () => {
   return <ResetPasswordFormComponent />;
 };
+
+export { ResetPasswordPage };
