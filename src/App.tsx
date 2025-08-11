@@ -21,6 +21,8 @@ import {
   LoginPage,
   RegisterPage,
   AssessmentTestPage,
+  AssessmentPage,
+  AssessmentResultsPage,
   ResetPasswordPage,
 } from "./pages";
 import "./App.css";
@@ -90,13 +92,41 @@ export default function App() {
               }
             />
 
-            {/* Assessment Test Route (Protected) */}
+            {/* Assessment Test Route (Protected) - Level Selection */}
             <Route
               path="/assessment-test"
               element={
                 isAuthenticated ? (
                   <VerificationWrapper>
                     <AssessmentTestPage />
+                  </VerificationWrapper>
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+
+            {/* Assessment Taking Route (Protected) */}
+            <Route
+              path="/assessment/:testId"
+              element={
+                isAuthenticated ? (
+                  <VerificationWrapper>
+                    <AssessmentPage />
+                  </VerificationWrapper>
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+
+            {/* Assessment Results Route (Protected) */}
+            <Route
+              path="/assessment/:testId/results"
+              element={
+                isAuthenticated ? (
+                  <VerificationWrapper>
+                    <AssessmentResultsPage />
                   </VerificationWrapper>
                 ) : (
                   <Navigate to="/login" replace />

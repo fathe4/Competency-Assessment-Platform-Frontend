@@ -65,60 +65,8 @@ const Navigation: React.FC = () => {
     }
   };
 
-  const handleResetPassword = () => {
-    setIsUserMenuOpen(false);
-    console.log("Navigate to reset password page");
-    // TODO: navigate("/reset-password");
-  };
-
-  const handleManageProfile = () => {
-    setIsUserMenuOpen(false);
-    console.log("Navigate to profile management page");
-    // TODO: navigate("/profile");
-  };
-
   const userMenuItems: UserMenuItem[] = useMemo(
     () => [
-      {
-        id: "profile",
-        label: "Manage Profile",
-        icon: (
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
-        ),
-        onClick: handleManageProfile,
-      },
-      {
-        id: "reset-password",
-        label: "Reset Password",
-        icon: (
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1721 9z"
-            />
-          </svg>
-        ),
-        onClick: handleResetPassword,
-      },
       {
         id: "logout",
         label: "Logout",
@@ -404,7 +352,7 @@ const Navigation: React.FC = () => {
   );
 
   const renderMobileUserActions = () => (
-    <div className="border-t border-gray-200 py-2">
+    <div className=" border-gray-200">
       {userMenuItems
         .filter((item) => item.variant !== "danger")
         .map((item) => (

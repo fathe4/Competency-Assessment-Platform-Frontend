@@ -60,10 +60,6 @@ const LevelSelector: React.FC<LevelSelectorProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-16">
-        Choose Your Assessment Level
-      </h2>
-
       <div className="grid sm:grid-cols-1 grid-cols-3 gap-6 lg:gap-8">
         {levels.map((levelData) => (
           <div
@@ -105,6 +101,7 @@ const LevelSelector: React.FC<LevelSelectorProps> = ({
               <button
                 className="w-full bg-gray-900 text-white rounded-2xl py-3 lg:py-4 px-4 lg:px-6 font-semibold hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center text-sm lg:text-base mt-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isLoading}
+                onClick={() => onSelectLevel(levelData.id)}
               >
                 {isLoading ? "Starting..." : "Begin Assessment"}
                 <svg

@@ -194,6 +194,31 @@ export const assessmentApi = baseApi.injectEndpoints({
       }),
       providesTags: [CONSTANTS.ASSESSMENT.TEST],
     }),
+
+    // Get assessment results by testId (for results page)
+    getAssessmentResults: builder.query<
+      ApiResponse<CompleteAssessmentResponse>,
+      string
+    >({
+      query: (testId) => ({
+        url: `/assessments/${testId}/results`,
+        method: "GET",
+      }),
+      providesTags: (_result, _error, testId) => [
+        { type: CONSTANTS.ASSESSMENT.RESULT, id: testId },
+      ],
+    }),
+
+    // Get assessment info by testId (for loading assessment state)
+    getAssessmentInfo: builder.query<ApiResponse<ITest>, string>({
+      query: (testId) => ({
+        url: `/assessments/${testId}`,
+        method: "GET",
+      }),
+      providesTags: (_result, _error, testId) => [
+        { type: CONSTANTS.ASSESSMENT.TEST, id: testId },
+      ],
+    }),
   }),
   overrideExisting: false,
 });
@@ -212,4 +237,8 @@ export const {
   useLazyGetAssessmentHistoryQuery,
   useGetActiveAssessmentQuery,
   useLazyGetActiveAssessmentQuery,
+  useGetAssessmentResultsQuery,
+  useLazyGetAssessmentResultsQuery,
+  useGetAssessmentInfoQuery,
+  useLazyGetAssessmentInfoQuery,
 } = assessmentApi;

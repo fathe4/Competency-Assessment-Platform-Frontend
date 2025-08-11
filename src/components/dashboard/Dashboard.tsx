@@ -139,28 +139,6 @@ const Dashboard: React.FC = () => {
               </li>
             </ul>
           </div>
-
-          {/* User Stats */}
-          <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-              <div className="w-3 h-3 bg-orange-500 rounded-full mr-3"></div>
-              Your Progress
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-4 bg-gray-50 rounded-2xl">
-                <div className="text-3xl font-bold text-gray-900 mb-1">0</div>
-                <div className="text-sm font-medium text-gray-500">
-                  Completed
-                </div>
-              </div>
-              <div className="text-center p-4 bg-gray-50 rounded-2xl">
-                <div className="text-3xl font-bold text-gray-900 mb-1">3</div>
-                <div className="text-sm font-medium text-gray-500">
-                  Available
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </PageContainer>
     </div>

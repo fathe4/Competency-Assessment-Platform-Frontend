@@ -30,12 +30,12 @@ const ResultsCard: React.FC<ResultsCardProps> = ({
   onReturnToSelection,
 }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 py-8">
+    <div className="min-h-screen from-blue-50 via-white to-indigo-50 py-8">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+        <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-8">
           <div className="text-center">
             {/* Trophy Icon */}
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl mb-6 shadow-sm">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl mb-6 shadow-md">
               <TrophyIcon className="w-8 h-8 text-white" />
             </div>
 
@@ -45,7 +45,7 @@ const ResultsCard: React.FC<ResultsCardProps> = ({
 
             {/* Score Display */}
             <div className="bg-gray-50 rounded-2xl p-8 mb-8">
-              <div className="text-5xl font-bold text-gray-900 mb-3">
+              <div className="text-5xl font-bold text-blue-900 mb-3">
                 {Math.round(score)}%
               </div>
               <div className="text-lg text-gray-600 mb-4">Final Score</div>
@@ -78,14 +78,14 @@ const ResultsCard: React.FC<ResultsCardProps> = ({
                   </p>
                 </div>
               ) : (
-                <div className="bg-green-50 border border-green-200 rounded-2xl p-6 max-w-lg mx-auto">
+                <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 max-w-lg mx-auto">
                   <div className="flex items-center justify-center mb-3">
-                    <CheckCircleIcon className="w-6 h-6 text-green-600 mr-2" />
-                    <span className="text-2xl font-bold text-green-900">
+                    <CheckCircleIcon className="w-6 h-6 text-blue-600 mr-2" />
+                    <span className="text-2xl font-bold text-blue-900">
                       {level || "COMPLETED"}
                     </span>
                   </div>
-                  <p className="text-green-800 font-medium text-sm">
+                  <p className="text-blue-800 font-medium text-sm">
                     {canProceedToNext
                       ? "Professional competency level achieved. You are authorized to proceed to the next assessment level."
                       : "Competency level achieved."}
@@ -98,7 +98,7 @@ const ResultsCard: React.FC<ResultsCardProps> = ({
             <div className="space-y-3 max-w-xs mx-auto">
               {certificateInfo && level !== "FAILED" && (
                 <button
-                  className="w-full bg-gray-900 text-white rounded-xl py-3 px-4 font-semibold hover:bg-gray-800 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-xl py-3 px-4 font-semibold hover:from-blue-700 hover:to-indigo-800 transition-all duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                   disabled={isDownloading}
                   onClick={() => onDownloadCertificate(certificateInfo.id)}
                 >
@@ -111,7 +111,7 @@ const ResultsCard: React.FC<ResultsCardProps> = ({
 
               {canProceedToNext && currentStep && currentStep < 3 && (
                 <button
-                  className="w-full bg-green-600 text-white rounded-xl py-3 px-4 font-semibold hover:bg-green-700 transition-colors"
+                  className="w-full bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-xl py-3 px-4 font-semibold hover:from-indigo-700 hover:to-purple-800 transition-all duration-200 shadow-md"
                   onClick={onContinueToNext}
                 >
                   Continue to Level {String.fromCharCode(65 + currentStep)}
@@ -119,7 +119,7 @@ const ResultsCard: React.FC<ResultsCardProps> = ({
               )}
 
               <button
-                className="w-full border border-gray-300 text-gray-700 rounded-xl py-3 px-4 font-semibold hover:bg-gray-50 transition-colors"
+                className="w-full border border-blue-300 text-blue-700 rounded-xl py-3 px-4 font-semibold hover:bg-blue-50 transition-colors"
                 onClick={onReturnToSelection}
               >
                 Return to Level Selection

@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   startTest,
@@ -21,6 +22,7 @@ import { toastUtils } from "../utils/toast";
  */
 export const useAssessment = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const assessmentState = useAppSelector((state) => state.assessment);
 
   // Local state for answer submission loading
@@ -69,6 +71,9 @@ export const useAssessment = () => {
               testId,
             })
           );
+
+          // Navigate to the assessment page instead of updating DOM
+          navigate(`/assessment/${testId}`);
         }
 
         dispatch(setAssessmentLoading(false));
@@ -88,7 +93,7 @@ export const useAssessment = () => {
         dispatch(setAssessmentLoading(false));
       }
     },
-    [dispatch, startAssessmentAPI]
+    [dispatch, startAssessmentAPI, navigate]
   );
 
   // Submit answer
@@ -239,6 +244,70 @@ export const useAssessment = () => {
     setCertificateInfo(null); // Reset certificate info
   }, [dispatch]);
 
+  // Load assessment by testId (for AssessmentPage)
+  const loadAssessmentByTestId = useCallback(
+    async (testId: string) => {
+      try {
+        dispatch(setAssessmentLoading(true));
+
+        // Use the new API to get assessment info
+        // For now, we'll just set the testId in Redux state
+        // The actual question loading will be handled by useGetCurrentQuestionQuery
+        dispatch(
+          startTest({
+            step: 1, // We'll get the actual step from API if needed
+            testId,
+          })
+        );
+
+        dispatch(setAssessmentLoading(false));
+      } catch (error) {
+        console.error("Failed to load assessment:", error);
+        dispatch(setError("Failed to load assessment"));
+        dispatch(setAssessmentLoading(false));
+      }
+    },
+    [dispatch]
+  );
+
+  // Load assessment results (for AssessmentResultsPage)
+  const loadAssessmentResults = useCallback(
+    async (testId: string) => {
+      try {
+        dispatch(setAssessmentLoading(true));
+
+        // Note: We'll use useLazyGetAssessmentResultsQuery in the component instead
+        // This is a fallback implementation for manual loading
+        const response = await completeAssessmentAPI({
+          testId,
+          totalTimeSpent: 0, // Not needed for results view
+        }).unwrap();
+
+        if (response.success && response.data?.test) {
+          const testData = response.data.test;
+          const certificateData = response.data.certificate;
+
+          dispatch(
+            completeTest({
+              score: testData.score,
+              levelAchieved: testData.levelAchieved,
+              canProceedToNextStep: testData.canProceedToNextStep,
+            })
+          );
+
+          setCertificateInfo(certificateData);
+        }
+
+        dispatch(setAssessmentLoading(false));
+      } catch (error) {
+        console.error("Failed to load assessment results:", error);
+        dispatch(setError("Failed to load assessment results"));
+        dispatch(setAssessmentLoading(false));
+      }
+    },
+    [dispatch, completeAssessmentAPI]
+  );
+
   // Helper functions
   const getCurrentQuestion = () => {
     // Use API data and transform to match component expectations
@@ -314,6 +383,8 @@ export const useAssessment = () => {
     finishAssessment: completeAssessment, // Alias for component compatibility
     updateAssessmentTimer,
     resetTest,
+    loadAssessmentByTestId,
+    loadAssessmentResults,
   };
 };
 

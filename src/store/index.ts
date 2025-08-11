@@ -50,6 +50,10 @@ export const {
   useLazyGetAssessmentHistoryQuery,
   useGetActiveAssessmentQuery,
   useLazyGetActiveAssessmentQuery,
+  useGetAssessmentResultsQuery,
+  useLazyGetAssessmentResultsQuery,
+  useGetAssessmentInfoQuery,
+  useLazyGetAssessmentInfoQuery,
 } = assessmentApi;
 
 // API hooks - Auth
